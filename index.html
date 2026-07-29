@@ -2,153 +2,109 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>A Little Surprise ❤️</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 <style>
+*{box-sizing:border-box}
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-text-align:center;
-color:white;
-}
-
-.container{
-background:rgba(255,255,255,0.15);
-padding:30px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-width:90%;
-max-width:400px;
-}
-
-.boxes{
-display:flex;
-justify-content:center;
-gap:8px;
-margin:20px 0;
-}
-
+margin:0;font-family:Poppins,sans-serif;overflow:hidden;
+background:linear-gradient(135deg,#ff9ec4,#ffd6e7,#cbb4ff);
+display:flex;justify-content:center;align-items:center;height:100vh;color:#fff}
+body:before{
+content:"";position:fixed;inset:0;
+background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 30%),
+radial-gradient(circle at 80% 70%,rgba(255,255,255,.2),transparent 30%);
+animation:floatbg 8s ease-in-out infinite alternate}
+@keyframes floatbg{to{transform:scale(1.08) translateY(-10px)}}
+.card{
+position:relative;z-index:2;
+width:min(92vw,430px);
+padding:28px;border-radius:28px;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(18px);
+box-shadow:0 15px 40px rgba(0,0,0,.18);
+text-align:center}
+h1{font-family:"Great Vibes",cursive;font-size:52px;margin:5px 0 10px}
+p{margin:8px 0}
+.hint{opacity:.9}
+.boxes{display:flex;gap:8px;justify-content:center;margin:20px 0}
 .boxes input{
-width:40px;
-height:50px;
-font-size:24px;
-text-align:center;
-border:none;
-border-radius:10px;
-outline:none;
-text-transform:uppercase;
-}
-
+width:42px;height:52px;border:none;border-radius:12px;
+font-size:24px;text-align:center;text-transform:uppercase}
 button{
-padding:12px 30px;
-border:none;
-border-radius:30px;
-background:#ff4d6d;
-color:white;
-font-size:18px;
-cursor:pointer;
+border:none;border-radius:999px;padding:13px 34px;
+background:#ff4f8b;color:#fff;font-size:17px;font-weight:700;
+cursor:pointer;transition:.25s}
+button:hover{transform:scale(1.05)}
+#msg{height:24px;margin-top:12px}
+#main{display:none}
+video{width:100%;border-radius:20px;box-shadow:0 0 25px rgba(255,255,255,.45)}
+#hearts span{
+position:fixed;bottom:-30px;font-size:20px;
+animation:rise linear infinite;color:#fff8}
+@keyframes rise{
+from{transform:translateY(0)}to{transform:translateY(-120vh) rotate(360deg)}
 }
-
-#message{
-margin-top:15px;
-font-weight:bold;
-}
-
-#videoPage{
-display:none;
-}
-
-video{
-width:90%;
-max-width:700px;
-border-radius:20px;
-margin-top:20px;
-}
+.end{margin-top:18px;font-size:15px}
 </style>
 </head>
-
 <body>
+<div id="hearts"></div>
 
-<div class="container" id="lockPage">
-<h1>❤️ A Little Surprise ❤️</h1>
-
-<p>Only one person can unlock this.</p>
-
-<p><b>Hint:</b> you❤️‍🩹</p>
+<div class="card" id="lock">
+<h1>A Little Surprise</h1>
+<p>Only one person can unlock this. ❤️</p>
+<p class="hint"><b>Hint:</b> you❤️‍🩹</p>
 
 <div class="boxes">
-<input maxlength="1">
-<input maxlength="1">
-<input maxlength="1">
-<input maxlength="1">
-<input maxlength="1">
-<input maxlength="1">
-<input maxlength="1">
+<input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1>
 </div>
 
-<button onclick="check()">Unlock ❤️</button>
-
-<p id="message"></p>
-
+<button onclick="unlock()">Unlock ❤️</button>
+<div id="msg"></div>
 </div>
 
-<div id="videoPage">
-
-<h1>❤️ Welcome Anjana ❤️</h1>
-
+<div class="card" id="main">
+<h1>Welcome Anjana ❤️</h1>
 <p>You found the key to my heart...</p>
-
 <video controls autoplay>
-<source src="VID-20260729-WA0286.mp4" type="video/mp4">
+<source src="video.mp4" type="video/mp4">
 </video>
-
-<p style="margin-top:20px;font-size:20px;">
-Happy Girlfriend's Day ❤️<br><br>
-Thank you for being my favorite person.
-</p>
-
+<div class="end">
+<h2 style="font-family:Great Vibes;font-size:40px;margin:10px 0;">Happy Girlfriend's Day ❤️</h2>
+<p>Every smile of yours is my favourite memory. Thank you for being my safest place and my happiest chapter. I love you. 🌹</p>
+</div>
 </div>
 
 <script>
-
-const inputs=document.querySelectorAll("input");
-
-inputs.forEach((input,index)=>{
-input.addEventListener("input",()=>{
-input.value=input.value.toUpperCase();
-if(input.value && index<6){
-inputs[index+1].focus();
+const hearts=document.getElementById("hearts");
+for(let i=0;i<28;i++){
+ let s=document.createElement("span");
+ s.textContent="❤";
+ s.style.left=Math.random()*100+"vw";
+ s.style.animationDuration=(6+Math.random()*8)+"s";
+ s.style.animationDelay=(-Math.random()*10)+"s";
+ hearts.appendChild(s);
 }
+const ins=document.querySelectorAll("input");
+ins.forEach((e,i)=>{
+ e.oninput=()=>{
+  e.value=e.value.toUpperCase();
+  if(e.value&&i<6)ins[i+1].focus();
+ };
+ e.onkeydown=(k)=>{if(k.key==="Backspace"&&!e.value&&i>0)ins[i-1].focus();}
 });
-});
-
-function check(){
-
-let password="";
-
-inputs.forEach(i=>password+=i.value);
-
-if(password.toUpperCase()=="KALYANI"){
-
-document.getElementById("lockPage").style.display="none";
-document.getElementById("videoPage").style.display="block";
-
+function unlock(){
+ let p="";
+ ins.forEach(i=>p+=i.value);
+ if(p==="KALYANI"){
+   document.getElementById("lock").style.display="none";
+   document.getElementById("main").style.display="block";
+ }else{
+   document.getElementById("msg").innerHTML="💔 Not quite... Think with your heart.";
+ }
 }
-else{
-
-document.getElementById("message").innerHTML="❌ Oops... Think with your heart ❤️";
-
-}
-
-}
-
 </script>
-
 </body>
 </html>
