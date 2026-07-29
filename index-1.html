@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Anjana ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Poppins,sans-serif;background:#0b0b0b;color:#fff;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden}
+body:before{content:"";position:fixed;inset:-20%;background:radial-gradient(circle,#ff5fa233,transparent 45%);animation:move 8s infinite alternate}
+@keyframes move{from{transform:translate(-80px,-40px)}to{transform:translate(80px,40px)}}
+.card{width:min(92vw,420px);background:rgba(255,255,255,.08);backdrop-filter:blur(16px);padding:28px;border-radius:24px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+h1{font-family:"Great Vibes",cursive;font-size:56px;color:#ffd7a8;margin:0}
+p{color:#ddd}
+.boxes{display:flex;justify-content:center;gap:8px;margin:20px 0}
+.boxes input{width:42px;height:52px;border-radius:12px;border:1px solid #d6b17a;background:#ffffff12;color:#ffd7a8;font-size:24px;text-align:center;text-transform:uppercase}
+button{padding:12px 28px;border:none;border-radius:999px;background:linear-gradient(90deg,#ffd7a8,#ff7db8);font-weight:600;cursor:pointer}
+#app2,#app3{display:none}
+video{width:100%;border-radius:18px}
+#letter{background:#fff8ef;color:#333;padding:20px;border-radius:18px;text-align:left}
+</style>
+</head>
+<body>
+<div class="card" id="app1">
+<h1>A Little Surprise</h1>
+<p>This wasn't made for everyone.<br>It was made only for you.</p>
+<p><b>Hint:</b> you❤️‍🩹</p>
+<div class="boxes">
+<input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1><input maxlength=1>
+</div>
+<button onclick="check()">Unlock ❤️</button>
+<p id="msg"></p>
+</div>
+
+<div class="card" id="app2">
+<h1>Welcome</h1>
+<h2>Anjana ❤️</h2>
+<p>You unlocked a piece of my heart.</p>
+<button onclick="play()">Play Surprise ❤️</button>
+</div>
+
+<div class="card" id="app3">
+<video id="vid" controls>
+<source src="video.mp4" type="video/mp4">
+</video>
+<div id="letter" style="display:none;margin-top:20px">
+<h2 style="font-family:Great Vibes;margin-top:0">My Dearest Anjana ❤️</h2>
+<p>Happy Girlfriend's Day.</p>
+<p>Thank you for being my peace, my happiness and my favourite person. Every memory with you is something I'll always treasure.</p>
+<p>I hope this little surprise reminds you how much you mean to me.</p>
+<p><b>I love you. Always. ❤️</b></p>
+<p style="text-align:right">— Yours</p>
+</div>
+</div>
+
+<script>
+const ins=document.querySelectorAll(".boxes input");
+ins.forEach((e,i)=>{
+ e.oninput=()=>{e.value=e.value.toUpperCase(); if(e.value&&i<6) ins[i+1].focus();}
+});
+function check(){
+ let s="";ins.forEach(i=>s+=i.value);
+ if(s==="KALYANI"){app1.style.display="none";app2.style.display="block";}
+ else msg.textContent="Think with your heart ❤️";
+}
+function play(){
+ app2.style.display="none";
+ app3.style.display="block";
+ vid.play();
+}
+vid.onended=()=>{letter.style.display="block";}
+</script>
+</body>
+</html>
