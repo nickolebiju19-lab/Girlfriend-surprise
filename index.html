@@ -287,6 +287,36 @@ Ilysm<br>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 <script>
+const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.3;
+
+function fadeOutMusic() {
+    let fade = setInterval(() => {
+        if (bgMusic.volume > 0.02) {
+            bgMusic.volume -= 0.02;
+        } else {
+            clearInterval(fade);
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+            bgMusic.volume = 0.3;
+        }
+    }, 100);
+}
+
+function fadeInMusic() {
+    bgMusic.currentTime = 0;
+    bgMusic.volume = 0;
+    bgMusic.play().catch(()=>{});
+
+    let fade = setInterval(() => {
+        if (bgMusic.volume < 0.28) {
+            bgMusic.volume += 0.02;
+        } else {
+            bgMusic.volume = 0.3;
+            clearInterval(fade);
+        }
+    }, 100);
+}
 const ins=document.querySelectorAll(".boxes input");
 ins.forEach((e,i)=>{
 e.oninput=()=>{e.value=e.value.toUpperCase(); if(e.value&&i<6) ins[i+1].focus();}
@@ -299,7 +329,7 @@ function check(){
         app1.style.display="none";
         app2.style.display="block";
 
-        bgMusic.play().catch(()=>{});
+       fadeInMusic();
     }else{
         msg.textContent="Think with your heart ❤️";
     }
@@ -313,7 +343,7 @@ function play() {
     ending.style.display = "none";
     endBtn.style.display = "none";
 
-    bgMusic.pause();
+   fadeOutMusic();
 
     vid.currentTime = 0;
     vid.muted = false;
@@ -322,7 +352,7 @@ function play() {
 }
 vid.onended = () => {
 
-    bgMusic.play().catch(()=>{});
+   fadeInMusic();
 
     letter.style.display = "block";
     endBtn.style.display = "block";
