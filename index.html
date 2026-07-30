@@ -18,6 +18,7 @@ padding:0;
 overflow-y:auto;
 overflow-x:hidden;
 box-sizing:border-box;
+text-align:center;
 }
 body{margin:0;font-family:Poppins,sans-serif;background:#0b0b0b;color:#fff;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden}
 body:before{content:"";position:fixed;inset:-20%;background:radial-gradient(circle,#ff5fa233,transparent 45%);animation:move 8s infinite alternate}
@@ -306,6 +307,10 @@ function check(){
 function play() {
     app2.style.display = "none";
     app3.style.display = "block";
+
+    letter.style.display = "none";
+    ending.style.display = "none";
+    endBtn.style.display = "none";
 
     vid.currentTime = 0;
     vid.muted = false;
