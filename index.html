@@ -152,15 +152,6 @@ animation:fadeIn 1.2s ease;
 #letter p{
 color:#444;
 }
-padding:35px;
-border-radius:25px;
-border:2px solid #FFD7A8;
-box-shadow:0 15px 40px rgba(0,0,0,.35);
-font-size:18px;
-line-height:1.9;
-text-align:left;
-animation:fadeIn 1.2s ease;
-}
 @keyframes shine {
     0% {
         background-position: 0%;
@@ -249,6 +240,18 @@ Now let me show you why you're the most beautiful part of my life.
         <button>📥 Download Video</button>
     </a>
 </div>
+<div id="gallery" style="display:none;text-align:center;margin:40px auto;">
+<h2>Our Memories ❤️</h2>
+<img id="slide"
+src="pic1.jpg"
+style="
+width:90%;
+max-width:420px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(255,215,170,.4);
+">
+
+</div>
 <div id="letter">
 <h2 style="font-family:Great Vibes;margin-top:0">My Dearest Anjana ❤️</h2>
 <p>Happy Girlfriend's Day.</p>
@@ -284,18 +287,39 @@ function play() {
     });
 }
 vid.onended = () => {
-    vid.style.display = "none";
-
-    app3.style.display = "block";
-    app3.style.background = "#0b0b0b";
-    app3.style.padding = "25px";
 
     letter.style.display = "block";
 
-    window.scrollTo({
-        top:0,
+    letter.scrollIntoView({
         behavior:"smooth"
     });
+
+};
+const images = [
+    "pic1.jpg",
+    "pic2.jpg",
+    "pic3.jpg"
+];
+
+let current = 0;
+
+setInterval(() => {
+    if (gallery.style.display === "block") {
+        current = (current + 1) % images.length;
+        slide.src = images[current];
+    }
+}, 2500);
+
+vid.onended = () => {
+
+    gallery.style.display = "block";
+
+    letter.style.display = "block";
+
+    gallery.scrollIntoView({
+        behavior:"smooth"
+    });
+
 };
 </script>
 
