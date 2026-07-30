@@ -240,6 +240,34 @@ Now let me show you why you're the most beautiful part of my life.
         <button>📥 Download Video</button>
     </a>
 </div>
+<div id="letter">
+
+<h2 style="font-family:Great Vibes;margin-top:0">
+My Dearest Anjana ❤️
+</h2>
+
+<p>Happy Girlfriend's Day.</p>
+
+<p>
+Thank you for being my peace, my happiness and my favourite person.
+Every memory with you is something I'll always treasure.
+</p>
+
+<p>
+I hope this little surprise reminds you how much you mean to me.
+</p>
+
+<p><b>I love you. Always. ❤️</b></p>
+
+<p style="text-align:right;font-weight:bold;">
+Forever yours,<br>
+Nickole ❤️
+</p>
+
+</div>
+<button id="endBtn" onclick="showEnding()" style="display:none;margin:30px auto;">
+    ❤️ One More Thing...
+</button>
 <div id="ending" style="display:none;text-align:center;padding:80px 20px;">
 
 <h1 style="font-size:65px;">Happy Girlfriend's Day ❤️</h1>
@@ -265,7 +293,6 @@ Forever Yours,<br>
 Nickole ❤️
 </h2>
 </div>
-
 <script>
 const ins=document.querySelectorAll(".boxes input");
 ins.forEach((e,i)=>{
@@ -288,27 +315,28 @@ function play() {
     });
 }
 vid.onended = () => {
-
     letter.style.display = "block";
+    endBtn.style.display = "block";
 
     letter.scrollIntoView({
         behavior: "smooth"
     });
-
-    setTimeout(() => {
-
-        ending.style.display = "block";
-
-        ending.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }, 3000);
-
 };
+
+function showEnding() {
+    endBtn.style.display = "none";
+
+    ending.style.display = "block";
+
+    ending.scrollIntoView({
+        behavior: "smooth"
+    });
+}
 </script>
 
 <div class="sparkles"></div>
+
+</div> <!-- closes app3 -->
 
 </body>
 </html>
