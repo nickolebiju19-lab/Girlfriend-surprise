@@ -240,30 +240,30 @@ Now let me show you why you're the most beautiful part of my life.
         <button>📥 Download Video</button>
     </a>
 </div>
-<div id="gallery" style="display:none;text-align:center;margin:40px auto;">
-<h2>Our Memories ❤️</h2>
-<img id="slide"
-src="pic1.jpg"
-style="
-width:90%;
-max-width:420px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(255,215,170,.4);
-transition:opacity .5s ease;
-opacity:1;
-">
-</div>
-<div id="letter">
-<h2 style="font-family:Great Vibes;margin-top:0">My Dearest Anjana ❤️</h2>
-<p>Happy Girlfriend's Day.</p>
-<p>Thank you for being my peace, my happiness and my favourite person. Every memory with you is something I'll always treasure.</p>
-<p>I hope this little surprise reminds you how much you mean to me.</p>
-<p><b>I love you. Always. ❤️</b></p>
-<p style="text-align:right;font-weight:bold;">
-Forever yours,<br>
-Nickole ❤️
+<div id="ending" style="display:none;text-align:center;padding:80px 20px;">
+
+<h1 style="font-size:65px;">Happy Girlfriend's Day ❤️</h1>
+
+<p style="font-size:22px;max-width:700px;margin:auto;line-height:1.8;">
+
+Every smile we've shared,
+every memory we've made,
+and every moment with you
+has become one of my favourite parts of life.
+
+Thank you for loving me,
+supporting me,
+and being my home.
+
+No matter what happens,
+I'll always choose you.
+
 </p>
-</div>
+
+<h2 style="margin-top:40px;">
+Forever Yours,<br>
+Nickole ❤️
+</h2>
 </div>
 
 <script>
@@ -287,37 +287,23 @@ function play() {
         console.log(err);
     });
 }
-const images = [
-    "pic1.jpg",
-    "pic2.jpg",
-    "pic3.jpg"
-];
-
-let current = 0;
-
-setInterval(() => {
-    if (gallery.style.display === "block") {
-
-        slide.style.opacity = "0";
-
-        setTimeout(() => {
-            current = (current + 1) % images.length;
-            slide.src = images[current];
-            slide.style.opacity = "1";
-        }, 300);
-
-    }
-}, 3000);
-
 vid.onended = () => {
-
-    gallery.style.display = "block";
 
     letter.style.display = "block";
 
-    gallery.scrollIntoView({
-        behavior:"smooth"
+    letter.scrollIntoView({
+        behavior: "smooth"
     });
+
+    setTimeout(() => {
+
+        ending.style.display = "block";
+
+        ending.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }, 3000);
 
 };
 </script>
