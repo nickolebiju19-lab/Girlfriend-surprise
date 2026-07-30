@@ -283,17 +283,29 @@ Ilysm<br>
 
 </h2>
 </div>
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 <script>
 const ins=document.querySelectorAll(".boxes input");
 ins.forEach((e,i)=>{
 e.oninput=()=>{e.value=e.value.toUpperCase(); if(e.value&&i<6) ins[i+1].focus();}
 });
 function check(){
- let s="";ins.forEach(i=>s+=i.value);
- if(s==="KALYANI"){app1.style.display="none";app2.style.display="block";}
- else msg.textContent="Think with your heart ❤️";
+    let s="";
+    ins.forEach(i=>s+=i.value);
+
+    if(s==="KALYANI"){
+        app1.style.display="none";
+        app2.style.display="block";
+
+        bgMusic.play().catch(()=>{});
+    }else{
+        msg.textContent="Think with your heart ❤️";
+    }
 }
 function play() {
+
     app2.style.display = "none";
     app3.style.display = "block";
 
@@ -301,19 +313,22 @@ function play() {
     ending.style.display = "none";
     endBtn.style.display = "none";
 
+    bgMusic.pause();
+
     vid.currentTime = 0;
     vid.muted = false;
 
-    vid.play().catch(err => {
-        console.log(err);
-    });
+    vid.play().catch(err => console.log(err));
 }
 vid.onended = () => {
+
+    bgMusic.play().catch(()=>{});
+
     letter.style.display = "block";
     endBtn.style.display = "block";
 
     letter.scrollIntoView({
-        behavior: "smooth"
+        behavior:"smooth"
     });
 };
 
