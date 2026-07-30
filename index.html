@@ -249,8 +249,9 @@ width:90%;
 max-width:420px;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(255,215,170,.4);
+transition:opacity .5s ease;
+opacity:1;
 ">
-
 </div>
 <div id="letter">
 <h2 style="font-family:Great Vibes;margin-top:0">My Dearest Anjana ❤️</h2>
@@ -286,15 +287,6 @@ function play() {
         console.log(err);
     });
 }
-vid.onended = () => {
-
-    letter.style.display = "block";
-
-    letter.scrollIntoView({
-        behavior:"smooth"
-    });
-
-};
 const images = [
     "pic1.jpg",
     "pic2.jpg",
@@ -305,10 +297,17 @@ let current = 0;
 
 setInterval(() => {
     if (gallery.style.display === "block") {
-        current = (current + 1) % images.length;
-        slide.src = images[current];
+
+        slide.style.opacity = "0";
+
+        setTimeout(() => {
+            current = (current + 1) % images.length;
+            slide.src = images[current];
+            slide.style.opacity = "1";
+        }, 300);
+
     }
-}, 2500);
+}, 3000);
 
 vid.onended = () => {
 
