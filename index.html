@@ -15,8 +15,9 @@ width:100vw;
 height:100vh;
 background:black;
 padding:0;
-border-radius:0;
-box-shadow:none;
+overflow-y:auto;
+overflow-x:hidden;
+box-sizing:border-box;
 }
 body{margin:0;font-family:Poppins,sans-serif;background:#0b0b0b;color:#fff;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden}
 body:before{content:"";position:fixed;inset:-20%;background:radial-gradient(circle,#ff5fa233,transparent 45%);animation:move 8s infinite alternate}
@@ -137,7 +138,20 @@ display:none;
 max-width:700px;
 margin:40px auto;
 background:linear-gradient(180deg,#FFFDF8,#FFF1E6);
-color:#333;
+color:#222;
+padding:35px;
+border-radius:25px;
+border:2px solid #FFD7A8;
+box-shadow:0 15px 40px rgba(0,0,0,.35);
+font-size:18px;
+line-height:1.9;
+text-align:left;
+animation:fadeIn 1.2s ease;
+}
+
+#letter p{
+color:#444;
+}
 padding:35px;
 border-radius:25px;
 border:2px solid #FFD7A8;
@@ -226,9 +240,15 @@ Now let me show you why you're the most beautiful part of my life.
 </div>
 
 <div class="card" id="app3">
-<video id="vid" autoplay playsinline>
-<source src="VID-20260729-WA0286.mp4" type="video/mp4">
+<video id="vid" controls playsinline>
+    <source src="VID-20260729-WA0286.mp4" type="video/mp4">
 </video>
+
+<div style="text-align:center;margin-top:20px;">
+    <a href="VID-20260729-WA0286.mp4" download>
+        <button>📥 Download Video</button>
+    </a>
+</div>
 <div id="letter">
 <h2 style="font-family:Great Vibes;margin-top:0">My Dearest Anjana ❤️</h2>
 <p>Happy Girlfriend's Day.</p>
@@ -262,9 +282,17 @@ function play() {
 }
 vid.onended = () => {
     vid.style.display = "none";
-    letter.style.display = "block";
+
+    app3.style.display = "block";
     app3.style.background = "#0b0b0b";
-    app3.style.padding = "40px";
+    app3.style.padding = "25px";
+
+    letter.style.display = "block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 };
 </script>
 
