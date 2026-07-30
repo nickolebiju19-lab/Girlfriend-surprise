@@ -79,14 +79,8 @@ border-radius:18px;
 font-size:28px;
 
 font-weight:bold;
-const images = [
-"pic1.jpg",
-"pic2.jpg",
-"pic3.jpg"
-];
 
 color:#FFD700;
-let current = 0;
 
 text-align:center;
 
@@ -95,13 +89,10 @@ transition:.35s;
 box-shadow:0 5px 15px rgba(255,215,170,.15);
 
 }
-setInterval(() => {
 
 .boxes input:focus{
-if(gallery.style.display==="block"){
 
 transform:translateY(-4px);
-current = (current + 1) % images.length;
 
 border-color:#FFD700;
 
@@ -157,7 +148,6 @@ line-height:1.9;
 text-align:left;
 animation:fadeIn 1.2s ease;
 }
-slide.src = images[current];
 
 #letter p{
 color:#444;
@@ -294,10 +284,17 @@ function play() {
     });
 }
 vid.onended = () => {
+    vid.style.display = "none";
+
+    app3.style.display = "block";
+    app3.style.background = "#0b0b0b";
+    app3.style.padding = "25px";
+
     letter.style.display = "block";
 
-    letter.scrollIntoView({
-        behavior: "smooth"
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
     });
 };
 </script>
