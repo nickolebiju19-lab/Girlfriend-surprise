@@ -179,13 +179,17 @@ to{transform:translateY(-300px);}
 }
 .red-string{
     display:block;
-    margin-top:18px;
+    margin-top:25px;
     font-family:'Dancing Script', cursive;
-    font-size:36px;
-    color:#ff2b55;
+    font-size:42px;
+    color:#ff1f4d;
     font-weight:700;
     text-align:center;
-    text-shadow:0 0 12px rgba(255,43,85,.5);
+    letter-spacing:1px;
+    text-shadow:
+        0 0 8px rgba(255,31,77,.5),
+        0 0 18px rgba(255,31,77,.6),
+        0 0 30px rgba(255,31,77,.4);
     animation:glowRed 2s ease-in-out infinite alternate;
 }
 
@@ -198,6 +202,9 @@ to{transform:translateY(-300px);}
     }
 }
     @media (max-width: 600px){
+        .red-string{
+    font-size:30px;
+}
 
 h1{
 font-size:52px;
@@ -300,10 +307,8 @@ I'll always choose you.
 ❤️ You are my red string... ❤️
 </span>
 </p>
-
-<h2 style="margin-top:40px;">
-Ilysm<br>
-
+<h2 style="margin-top:40px;font-family:'Great Vibes',cursive;font-size:42px;">
+I love you endlessly ❤️
 </h2>
 </div>
 <audio id="bgMusic" loop>
@@ -312,9 +317,12 @@ Ilysm<br>
 <script>
 const bgMusic = document.getElementById("bgMusic");
 bgMusic.volume = 0.3;
+    let fade;
 
 function fadeOutMusic() {
-    let fade = setInterval(() => {
+    clearInterval(fade);
+
+    fade = setInterval(() => {
         if (bgMusic.volume > 0.02) {
             bgMusic.volume -= 0.02;
         } else {
@@ -327,11 +335,13 @@ function fadeOutMusic() {
 }
 
 function fadeInMusic() {
+    clearInterval(fade);
+
     bgMusic.currentTime = 0;
     bgMusic.volume = 0;
     bgMusic.play().catch(()=>{});
 
-    let fade = setInterval(() => {
+    fade = setInterval(() => {
         if (bgMusic.volume < 0.28) {
             bgMusic.volume += 0.02;
         } else {
@@ -366,25 +376,29 @@ function play() {
     ending.style.display = "none";
     endBtn.style.display = "none";
 
-   fadeOutMusic();
+
 
     vid.currentTime = 0;
     vid.muted = false;
 
     vid.play().catch(err => console.log(err));
 }
-vid.onended = () => {
+vid.onplay = () => {
+    clearInterval(fade);
 
-   fadeInMusic();
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    bgMusic.volume = 0.3;
+};
+
+vid.onended = () => {
+    fadeInMusic();
 
     letter.style.display = "block";
     endBtn.style.display = "block";
 
-    letter.scrollIntoView({
-        behavior:"smooth"
-    });
+    letter.scrollIntoView({ behavior: "smooth" });
 };
-
 function showEnding() {
     endBtn.style.display = "none";
 
