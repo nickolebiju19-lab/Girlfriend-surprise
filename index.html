@@ -255,7 +255,10 @@ Now let me show you why you're the most beautiful part of my life.
 <p>Thank you for being my peace, my happiness and my favourite person. Every memory with you is something I'll always treasure.</p>
 <p>I hope this little surprise reminds you how much you mean to me.</p>
 <p><b>I love you. Always. ❤️</b></p>
-<p style="text-align:right">— Yours</p>
+<p style="text-align:right;font-weight:bold;">
+Forever yours,<br>
+Nickole ❤️
+</p>
 </div>
 </div>
 
@@ -281,17 +284,10 @@ function play() {
     });
 }
 vid.onended = () => {
-    vid.style.display = "none";
-
-    app3.style.display = "block";
-    app3.style.background = "#0b0b0b";
-    app3.style.padding = "25px";
-
     letter.style.display = "block";
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+    letter.scrollIntoView({
+        behavior: "smooth"
     });
 };
 </script>
